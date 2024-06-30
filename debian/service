@@ -1,0 +1,9 @@
+[Unit]
+Description=Agent to report NVML GPU temperature to HPE OCSD
+
+[Service]
+ExecStart=/usr/bin/nvml-ocsd-reporter
+WorkingDirectory=/usr/share/nvml-ocsd-reporter/
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,34 @@
+[package]
+name = "nvml-ocsd-reporter"
+version = "0.1.0"
+edition = "2021"
+description = "Userspace agent to report NVML GPU temperature to HPE OCSD"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/conroy-cheers/nvml-ocsd-reporter"
+authors = ["conroy-cheers"]
+
+[package.metadata.deb]
+maintainer-scripts = "debian/"
+systemd-units = { enable = true }
+assets = [
+    [
+        "target/release/nvml-ocsd-reporter",
+        "usr/bin/",
+        "755",
+    ],
+    [
+        "assets/nvml_ocsd_reporter.json",
+        "usr/share/nvml-ocsd-reporter/",
+        "644",
+    ],
+]
+
+[dependencies]
+ctrlc = "3.4.4"
+log = "0.4.22"
+nvml-wrapper = "0.10.0"
+ocsd = { version = "0.1.1", features = ["devmem"] }
+serde = { version = "1.0.203", features = ["derive"] }
+serde_json = "1.0.117"
+simple_logger = "5.0.0"
+systemd-journal-logger = "2.1.1"
